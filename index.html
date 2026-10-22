@@ -47,7 +47,14 @@ td{height:var(--rh)}
 .mr .meta div{width:48%}.mr .meta p{margin:3px 0;display:flex}.mr .meta i{flex:1;border-bottom:1px dotted #000;margin-left:5px}
 .mr table{font-size:11px;margin:0 0 6px}.mr th,.mr td{border:1px solid #000;font-style:normal;padding:2px 4px}.mr th{background:#f0f0f0;height:auto}.mr td{height:6.2mm}
 .mr .sg{display:flex;justify-content:space-around;font-size:10px;text-align:center;margin-top:5px}
-@media print{body{background:none}.bar{display:none}.sheet,.mr{margin:0}}
+#out{outline:none}
+#out [contenteditable],#out *{caret-color:#c00}
+#out .v *:hover,#out .mr *:hover{outline:.2mm dashed rgba(30,100,220,.45);outline-offset:.2mm}
+#out *:focus{outline:.3mm solid #1e64dc;background:rgba(255,240,150,.35)}
+.row i{font-style:normal;min-width:10mm;font-size:inherit;line-height:5mm;overflow:hidden;white-space:nowrap}
+.hint{font-size:12px;color:#555;margin-top:4px}
+@media print{#out *:hover,#out *:focus{outline:none!important;background:none!important}.hint{display:none}
+body{background:none}.bar{display:none}.sheet,.mr{margin:0}}
 </style></head><body>
 <div class="bar">
   <select id="doc" onchange="go()"></select>
@@ -59,7 +66,9 @@ td{height:var(--rh)}
     <option value="1">সর্বশিক্ষা মিশন সহ (With SSM)</option>
     <option value="0">সর্বশিক্ষা মিশন ছাড়া (Without SSM)</option>
   </select>
+  <button onclick="go()" title="Discard edits and reload blank form">RESET</button>
   <button onclick="window.print()">PRINT</button>
+  <div class="hint">✎ যেকোনো লেখায় ক্লিক করে এডিট করুন (Click any text to edit). Dropdown/layout বদলালে বা RESET করলে এডিট মুছে যাবে — আগে PRINT করুন।</div>
 </div>
 <div id="out"></div>
 <script>
@@ -80,6 +89,8 @@ const D={
  joy:{bg:'#fffac0',c:'#4a3b00',solid:1,nohead:1,notot:1,cols:[['',8],['',32],['',15],['',15],['',15],['',15]],sr:'Date: ........',mob:'Mob:7076542575',t:'JOY GURU SAW MILL',s:['ASNA * BANKURA'],tag:'[Timber Merchant and General Order Suppliers]',p:'Prop: Kishor Ghosh',r:[['Customer Name &amp; Address :']],foot:'<div><b><i>Received Rs. ____________ with thanks on behalf of</i></b></div><div style="font:bold 11pt Times;margin:2mm 0 6mm 5mm">JOY GURU SAW MILL</div><div style="border-top:.25mm dashed #000;width:45%;margin-left:auto;text-align:center"><i>Signature of Owner</i></div>'},
  jadav:{c:'#8b0000',th:'#8b0000',thc:'#fff',t:'যাদব মিষ্টান্ন ভান্ডার',s:['প্রোঃ- অরিজিৎ ঘোষ','তালডাংরা (পাঁচমুড়া মোড়) বাঁকুড়া','মোবাইল: ৪১০১৩৬৮৫১৯ / ৬২৯৬৬৭০৪১৪'],tag:'যেকোন অনুষ্ঠানে অর্ডার মতো রাজভোগ, সন্দেশ, পনির, ঘি, ছানার পায়েস সরবরাহ করা হয়।',r:[['নং:','তারিখ:'],['ক্রেতার নাম:']],cols:[['ক্র. নং',12],['বিবরণ (Item)',60],['টাকা (Amt)',28]],sl:'১২৩৪৫৬৭৮',tot:'মোট (Total):',foot:'<div style="display:flex;justify-content:space-between;align-items:flex-end"><span class="paid">PAID</span><span style="border-top:.25mm solid #000;padding:0 8mm">স্বাক্ষর</span></div>'},
  siksha:{bg:'#f3f8ff',c:'#1a3f8f',th:'#1a3f8f',thc:'#fff',st:'#ffe9c7',ts:'20pt',mob:'মোবাইল: ৯৭৩৪২২১৬০৬',t:'শিক্ষা সাথী',s:['<span style="color:#c2410c">[অর্ডার সরবরাহকারী]</span>','তালডাংরা * বাঁকুড়া'],tag:'এখানে সকল প্রকার ছাত্রছাত্রীদের শিক্ষা সামগ্রী পাওয়া যায়।',pill:1,p:'প্রো:- সৌমেন নন্দী',sr:'তারিখ: ..........',r:[['ক্রেতার নাম ও ঠিকানা:']],cols:[['ক্র. নং',10],['বিবরণ',50],['পরিমাণ',12],['দর',13],['টাকা',15]],tot:'মোট:',foot:'<div><b>প্রাপ্তি স্বীকার টাকা</b> ____________________</div><div>তারিখ: ______________</div><div class="r">মালিকের স্বাক্ষর</div>'},
+ sumana:{bg:'#f6f9ff',c:'#0b2a5b',th:'#0b2a5b',thc:'#fff',st:'#dfe8f7',solid:1,ts:'17pt',mob:'Mob: 9933844903',t:'<span style="font-family:Georgia,serif;letter-spacing:2px">SUMANA TRANSPORT</span>',tag:'[All type of Car, Van available for transport]',s:['TALDANGRA * BANKURA'],box:'BILL',bxs:'background:none;border:0;border-bottom:.4mm solid #0b2a5b;color:#0b2a5b;font-size:11pt;padding:0 6mm;display:table;margin:1.5mm auto',p:'Prop:- Bibek Mahji',sr:'Date: ........',r:[['Customer Name &amp; Address:'],['Vehicle No:','Driver:'],['Journey From:','To:']],cols:[['Sl',9],['Particulars (Trip Details)',47],['Km / Day',14],['Rate',14],['Amount (Rs.)',16]],tot:'TOTAL:',foot:'<div><b>Received With Thanks Rs.</b> ____________________</div><div>Date: ______________</div><div class="r">Signature of Owner</div>'},
+ catering:{bg:'#fff7f0',c:'#7a1f3d',th:'#7a1f3d',thc:'#fff',st:'#fbe3d3',solid:1,ts:'15pt',t:'MAA DURGA CATERING SERVICE',s:['<span style="color:#b45309">TALDANGRA :: BANKURA</span>'],tag:'[Catering &amp; Order Suppliers]',box:'CASH MEMO / BILL',bxs:'background:#7a1f3d;color:#fff;border-color:#7a1f3d;font-size:10pt;letter-spacing:1px',sr:'Date: ........',p:'Bill No: ........',r:[['Name:'],['Address:'],['Programme / Occasion:']],cols:[['Sl',9],['Particulars',47],['Qty',13],['Rate',14],['Amount (Rs.)',17]],tot:'TOTAL:',foot:'<div style="border:.3mm solid #7a1f3d;border-radius:2mm;padding:1mm">Rupees (in words) : __________________________ only</div><div class="r">Signature of Owner</div>'},
  barat:{ts:'19pt',bg:'#fff8e6',c:'#8a2a0b',th:'#8a2a0b',st:'#fde7b8',mob:'Mob: 9475165763 / 9735184173',t:'বরাট ব্রাদার্স',s:['তালডাংরা | বাঁকুড়া'],tag:'প্রসিদ্ধ ঝাড়াই মশলার দোকান।',pill:1,p:'প্রো:—তপন বরাট',sr:'তারিখ: ..........',r:[['ক্রেতার নাম:']],foot:''},
 
  durga:{bg:'#fdf9c4',c:'#1b2a8a',solid:1,th:'#fde9b0',nrp:3,mob:'Mob: 9749469321',t:'SRI DURGA MILL STORE',s:['<span style="color:#8b1a1a">SUBHAS ROAD * BANKURA</span>'],tag:'(All Kinds of Machinery Hardare Goods are Sold Here)',box:'INVOICE',bxs:'background:none;border:0;color:#c0281e;font-size:15pt',p:'Prop. Srijan Dutta',r:[['INVOICE NO :','DATE :'],['PARTY\'S NAME: -']],cols:[['Particulars (Descriptions &amp; Specifications)',38],['HSN Code',17],['Qty',13],['Rate',14],['Amount',18]],tot:'Total',foot:'<div style="line-height:1.2"><div style="display:flex;gap:2mm"><div style="flex:1;border:.25mm solid #000;padding:1mm;font-size:5.5pt;line-height:1.2"><b style="color:#8b1a1a;font-size:7pt">Warranty related Terms &amp; conditions</b><br>1. An Invoice Must accompany products returned for warranty.<br>2. Goods damaged During transit voids warranty.<br>3. 90 days limited warranty unless otherwise stated.<br>4. 30 days limited warranty on OEM processor ( an internal parts of the product) exchange the same items only.<br>5. All items carry MFG Warranty only No return or exchange.</div><div style="width:42%;border:.25mm solid #000;font-weight:bold;padding:1mm;line-height:1.5">Add : CGST @ ______<br>Add : SGST @ ______<br>Grand Total ______</div></div><div style="border:.25mm solid #000;padding:1mm;margin-top:1.5mm"><b>Total Amount (INR - In Words):</b> ______________________</div><div style="margin-top:1.5mm">Received with thanks on behalf of<br><b style="color:#1b2a8a">SRI DURGA MILL STORE</b></div><div style="border-top:.25mm solid #000;width:45%;text-align:center;margin-top:3mm"><b>Signature of Owner</b></div></div>'},
@@ -87,7 +98,7 @@ const D={
  band:{solid:1,t:'BILL / VOUCHER',ts:'15pt',s:['BAND PARTY – MA MANSA','Pararbandh, Taldangra, Bankura'],r:[['Bill/Voucher No.:','Date: ___/___/____'],['Name of Customer / Institution:'],['Programme / Occasion:'],['Place of Programme:']],cols:[['Sl.',9],['Particulars / Description',49],['Qty.',12],['Rate (₹)',14],['Amount (₹)',16]],sl:'12345',tot:'TOTAL',foot:'<div>Amount in Words: ______________________________</div><div>Advance Received (₹): ____________</div><div>Balance Due (₹): ____________</div><div style="display:flex;justify-content:space-between;font-weight:bold;margin-top:3mm;font-size:8pt"><span></span><span>Signature of Owner<br>For BAND PARTY – MA MANSA</span></div><div style="text-align:right;font-size:7pt;margin-top:4mm">Pararbandh, Taldangra, Bankura</div>'},
  ta:{solid:1,th:'#eee',t:'TALDANGRA FULMATI HIGH SCHOOL [H.S.]',ts:'11pt',s:['TALDANGRA :: BANKURA'],box:'TA BILL',r:[['Name of the Claimant :'],['Designation :']],cols:[['Sl',9],['Particulars of TA Bill',55],['Rate',16],['Amt (Rs.)',20]],tot:'Total:',foot:`<div>Received Rupees ______________________________</div><div>Date: ____________ &nbsp; Signature: ____________</div><div>Amt of Rs. Paid from : Development / Vocational Fund.</div><div class="r" style="font-size:8pt">Headmaster / Administrator / President / Secretary</div>`}
 };
-const L=[['— Shop vouchers —'],['mondal','Mondal Electric'],['mahanta','Mahanta Electric'],['sabitri','Sabitri Hardware Stores'],['mamansa','Mamansa Krishi Bhandar'],['khan','Khan Brothers (Grocery)'],['mandal','Mandal Xerox'],['egg','Dhiren Chicken & Egg Shop'],['veg','Chakraborty Vegetable Store'],['joy','Joy Guru Saw Mill'],['durga','Sri Durga Mill Store (Invoice)'],['swapan','Swapan Sannigrahi (Bill / Cash Memo)'],['band','Band Party – Ma Mansa'],['jadav','যাদব মিষ্টান্ন ভান্ডার'],['barat','বরাট ব্রাদার্স'],['siksha','শিক্ষা সাথী (Siksha Sathi)'],['— Mixed pages —'],['mix3','Mondal + Sabitri + Mamansa (3 different)'],['mix2','Egg + Vegetable (2 different)'],['— School forms —'],['ta','TA Bill (Taldangra Fulmati HS)'],['mr','শ্রমিকের মজুরী মাষ্টার রোল (Master Roll)']];
+const L=[['— Shop vouchers —'],['mondal','Mondal Electric'],['mahanta','Mahanta Electric'],['sabitri','Sabitri Hardware Stores'],['mamansa','Mamansa Krishi Bhandar'],['khan','Khan Brothers (Grocery)'],['mandal','Mandal Xerox'],['egg','Dhiren Chicken & Egg Shop'],['veg','Chakraborty Vegetable Store'],['joy','Joy Guru Saw Mill'],['durga','Sri Durga Mill Store (Invoice)'],['swapan','Swapan Sannigrahi (Bill / Cash Memo)'],['band','Band Party – Ma Mansa'],['jadav','যাদব মিষ্টান্ন ভান্ডার'],['barat','বরাট ব্রাদার্স'],['siksha','শিক্ষা সাথী (Siksha Sathi)'],['sumana','Sumana Transport (Bill)'],['catering','Catering Service (Cash Memo)'],['— Mixed pages —'],['mix3','Mondal + Sabitri + Mamansa (3 different)'],['mix2','Egg + Vegetable (2 different)'],['— School forms —'],['ta','TA Bill (Taldangra Fulmati HS)'],['mr','শ্রমিকের মজুরী মাষ্টার রোল (Master Roll)']];
 const MIX={mix3:['mondal','sabitri','mamansa'],mix2:['egg','veg']};
 doc.innerHTML=L.map(x=>x.length==1?`<option disabled>${x[0]}</option>`:`<option value="${x[0]}">${x[1]}</option>`).join('');
 doc.value='mondal';
@@ -125,13 +136,15 @@ function go(){
  lay_el.disabled=isMR;ssm.style.display=isMR?'':'none';
  let css=document.getElementById('pg')||document.head.appendChild(Object.assign(document.createElement('style'),{id:'pg'}));
  css.textContent=`@page{size:A4 ${isMR||lay=='l'?'landscape':'portrait'};margin:0}`;
- if(isMR){out.innerHTML=mr(ssm.value=='1');return}
+ if(isMR){out.innerHTML=mr(ssm.value=='1');edit();return}
  const list=MIX[k]||[k],cnt=lay=='p'?2:3;
  let h=`<div class="sheet ${lay}">`;
  for(let i=0;i<cnt;i++){h+=(d=>V(d,d.nrp&&lay=='p'?d.nrp:n))(D[list[i%list.length]]);if(lay=='p'&&i==0)h+='<div class="cut">✂ SCISSORS CUT LINE</div>'}
  out.innerHTML=h+'</div>';
  fit();
+ edit();
 }
+function edit(){out.contentEditable='true';out.spellcheck=false}
 function fit(){
  document.querySelectorAll('.v').forEach(v=>{
   let rh=parseFloat(getComputedStyle(v).getPropertyValue('--rh'));
