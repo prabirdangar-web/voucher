@@ -9,11 +9,13 @@ body{margin:0;background:#666;font-family:"Times New Roman","Hind Siliguri",seri
 .bar select,.bar button{padding:7px 10px;margin:3px;font-size:14px;font-family:inherit;cursor:pointer}
 .bar button{font-weight:bold}
 .sheet{background:#fff;margin:10px auto;display:grid;overflow:hidden}
-.sheet.p{width:210mm;height:297mm;grid-template-rows:1fr auto 1fr;padding:6mm}
-.sheet.l{width:297mm;height:210mm;grid-template-columns:repeat(3,1fr);padding:5mm;gap:4mm}
+.sheet.l{width:297mm;height:210mm;padding:5mm;gap:4mm}
+.sheet.l2{grid-template-columns:repeat(2,1fr)}
+.sheet.l3{grid-template-columns:repeat(3,1fr)}
+.l2 .v{font-size:10pt}
+.l2 table{font-size:9.5pt}
 .cut{text-align:center;font:bold 8pt Arial;border-top:.3mm dashed #555;margin:2mm 0;padding-top:.8mm;letter-spacing:1px}
 .v{background:var(--bg);border:.35mm solid var(--c);padding:3mm;display:flex;flex-direction:column;overflow:hidden;font-size:9pt;--rh:9.5mm}
-.p .v{--rh:8mm}
 .mob{text-align:right;font-weight:bold;font-size:10pt}
 .ti{text-align:center;font:900 14pt/1.1 Arial,"Hind Siliguri",sans-serif;margin-top:1mm}
 .su{text-align:center;font-weight:bold;font-size:10pt;margin-top:1mm}
@@ -59,8 +61,8 @@ body{background:none}.bar{display:none}.sheet,.mr{margin:0}}
 <div class="bar">
   <select id="doc" onchange="go()"></select>
   <select id="lay" onchange="go()">
-    <option value="p">2-in-1 · A4 Portrait (cut line)</option>
-    <option value="l">3-in-1 · A4 Landscape</option>
+    <option value="2">2-in-1 · A4 Landscape</option>
+    <option value="3">3-in-1 · A4 Landscape</option>
   </select>
   <select id="ssm" onchange="go()">
     <option value="1">সর্বশিক্ষা মিশন সহ (With SSM)</option>
@@ -132,14 +134,14 @@ function mr(ssm){
  <div><div style="font-size:11px;margin-bottom:8px">শ্রমিকগণ আমার সাক্ষাতে স্বাক্ষর করিয়া নিজ নিজ মজুরী বুঝিয়া পাইলেন।</div><div class="sg">${sg.map(x=>`<div>${x}</div>`).join('')}</div></div></div>`;
 }
 function go(){
- const k=doc.value,isMR=k=='mr',lay=lay_(),n=lay=='p'?5:8;
+ const k=doc.value,isMR=k=='mr',lay=lay_(),n=8;
  lay_el.disabled=isMR;ssm.style.display=isMR?'':'none';
  let css=document.getElementById('pg')||document.head.appendChild(Object.assign(document.createElement('style'),{id:'pg'}));
- css.textContent=`@page{size:A4 ${isMR||lay=='l'?'landscape':'portrait'};margin:0}`;
+ css.textContent='@page{size:A4 landscape;margin:0}';
  if(isMR){out.innerHTML=mr(ssm.value=='1');edit();return}
- const list=MIX[k]||[k],cnt=lay=='p'?2:3;
- let h=`<div class="sheet ${lay}">`;
- for(let i=0;i<cnt;i++){h+=(d=>V(d,d.nrp&&lay=='p'?d.nrp:n))(D[list[i%list.length]]);if(lay=='p'&&i==0)h+='<div class="cut">✂ SCISSORS CUT LINE</div>'}
+ const list=MIX[k]||[k],cnt=+lay;
+ let h=`<div class="sheet l l${lay}">`;
+ for(let i=0;i<cnt;i++)h+=V(D[list[i%list.length]],n);
  out.innerHTML=h+'</div>';
  fit();
  edit();
