@@ -26,7 +26,7 @@ body{margin:0;background:#666;font-family:"Times New Roman","Hind Siliguri",seri
 .row{display:flex;gap:3mm;align-items:flex-end;min-height:7mm}
 .row div{display:flex;flex:1;align-items:flex-end}
 .row span{white-space:nowrap}
-.row i{flex:1;border-bottom:.25mm dashed #777;height:5mm;margin-left:1mm}
+.row .fl{flex:1;border-bottom:.25mm dashed #777;height:5mm;margin-left:1mm}
 table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:2mm;font-size:8.7pt}
 th,td{border:.25mm dashed #777;padding:.8mm;text-align:center}
 th{height:9mm;font-style:italic;line-height:1.05}
@@ -46,31 +46,59 @@ td{height:var(--rh)}
 .mr{width:297mm;height:210mm;padding:10mm 15mm;margin:10px auto;background:#fff;font-family:'Hind Siliguri',Arial,sans-serif;display:flex;flex-direction:column;justify-content:space-between}
 .mr h3,.mr h4{margin:1px 0;text-align:center}.mr h3{font-size:16px}.mr h4{font-size:13px}
 .mr .meta{display:flex;justify-content:space-between;font-size:12px;margin:6px 0}
-.mr .meta div{width:48%}.mr .meta p{margin:3px 0;display:flex}.mr .meta i{flex:1;border-bottom:1px dotted #000;margin-left:5px}
+.mr .meta div{width:48%}.mr .meta p{margin:3px 0;display:flex}.mr .meta .fl{flex:1;border-bottom:1px dotted #000;margin-left:5px}
 .mr table{font-size:11px;margin:0 0 6px}.mr th,.mr td{border:1px solid #000;font-style:normal;padding:2px 4px}.mr th{background:#f0f0f0;height:auto}.mr td{height:6.2mm}
 .mr .sg{display:flex;justify-content:space-around;font-size:10px;text-align:center;margin-top:5px}
+
+.fmt{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #bbb;padding:5px 8px;display:flex;flex-wrap:wrap;gap:4px 2px;align-items:center;font:13px Arial,"Hind Siliguri",sans-serif;box-shadow:0 2px 5px rgba(0,0,0,.3)}
+.fmt button,.fmt select{height:28px;padding:0 8px;font:inherit;border:1px solid #bbb;background:#fafafa;border-radius:3px;cursor:pointer;margin:0}
+.fmt button:hover{background:#e3ecfb}
+.fmt input[type=color]{width:30px;height:28px;padding:1px;border:1px solid #bbb;background:#fff;cursor:pointer;vertical-align:middle}
+.fmt .g{display:flex;gap:2px;align-items:center;padding-right:7px;margin-right:5px;border-right:1px solid #ccc}
+.fmt .g small{color:#666;margin-right:3px}
+#say{color:#b00;font-size:12px;margin-left:6px}
+.bxi{display:inline-flex;align-items:flex-end;justify-content:center;resize:both;overflow:hidden;border:.3mm solid #000;font-size:7pt;color:#555;vertical-align:bottom;min-width:8mm;min-height:6mm;padding:.5mm}
+.bxi img{width:100%;height:100%;object-fit:contain}
 #out{outline:none}
 #out [contenteditable],#out *{caret-color:#c00}
 #out .v *:hover,#out .mr *:hover{outline:.2mm dashed rgba(30,100,220,.45);outline-offset:.2mm}
 #out *:focus{outline:.3mm solid #1e64dc;background:rgba(255,240,150,.35)}
-.row i{font-style:normal;min-width:10mm;font-size:inherit;line-height:5mm;overflow:hidden;white-space:nowrap}
+.row .fl{font-style:normal;min-width:10mm;font-size:inherit;line-height:5mm;overflow:hidden;white-space:nowrap}
 .hint{font-size:12px;color:#555;margin-top:4px}
 @media print{#out *:hover,#out *:focus{outline:none!important;background:none!important}.hint{display:none}
-body{background:none}.bar{display:none}.sheet,.mr{margin:0}}
+body{background:none}.bar,.fmt{display:none}.sheet,.mr{margin:0}}
 </style></head><body>
 <div class="bar">
-  <select id="doc" onchange="go()"></select>
-  <select id="lay" onchange="go()">
+  <select id="doc" onchange="chg()"></select>
+  <select id="lay" onchange="chg()">
     <option value="2">2-in-1 · A4 Landscape</option>
     <option value="3">3-in-1 · A4 Landscape</option>
   </select>
-  <select id="ssm" onchange="go()">
+  <select id="ssm" onchange="chg()">
     <option value="1">সর্বশিক্ষা মিশন সহ (With SSM)</option>
     <option value="0">সর্বশিক্ষা মিশন ছাড়া (Without SSM)</option>
   </select>
-  <button onclick="go()" title="Discard edits and reload blank form">RESET</button>
+  <button onclick="chg()" title="Discard edits and reload blank form">RESET</button>
   <button onclick="window.print()">PRINT</button>
-  <div class="hint">✎ যেকোনো লেখায় ক্লিক করে এডিট করুন (Click any text to edit). Dropdown/layout বদলালে বা RESET করলে এডিট মুছে যাবে — আগে PRINT করুন।</div>
+  <div class="hint">✎ যেকোনো লেখায় ক্লিক করে এডিট করুন (Click any text to edit). উপরের Word-এর মতো টুলবার দিয়ে ফন্ট সাইজ, রং, Bold/Italic, সারি/কলাম, সই-বক্স ইত্যাদি দিন। Dropdown/layout বদলালে বা RESET করলে এডিট মুছে যাবে — আগে PRINT করুন।</div>
+</div>
+<div class="fmt" id="fmt">
+ <div class="g"><select id="ff" title="Font" onchange="ex('fontName',this.value)"><option value="">Font</option><option value="Times New Roman">Times New Roman</option><option value="Arial">Arial</option><option value="Hind Siliguri">Hind Siliguri</option><option value="Nirmala UI">Nirmala UI</option><option value="Noto Sans Bengali">Noto Sans Bengali</option><option value="Georgia">Georgia</option><option value="Verdana">Verdana</option><option value="Courier New">Courier New</option><option value="Impact">Impact</option></select>
+ <select id="fs" title="Font size (pt)" onchange="setSize(+this.value)"><option value="">pt</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>18</option><option>20</option><option>22</option><option>24</option><option>28</option><option>32</option><option>36</option><option>40</option></select>
+ <button title="Larger" onclick="bump(1)">A+</button><button title="Smaller" onclick="bump(-1)" style="font-size:11px">A-</button></div>
+ <div class="g"><button title="Bold (Ctrl+B)" onclick="ex('bold')"><b>B</b></button><button title="Italic (Ctrl+I)" onclick="ex('italic')"><i>I</i></button><button title="Underline (Ctrl+U)" onclick="ex('underline')"><u>U</u></button><button title="Strikethrough" onclick="ex('strikeThrough')"><s>S</s></button><button title="Superscript" onclick="ex('superscript')">x&sup2;</button><button title="Subscript" onclick="ex('subscript')">x&#8322;</button></div>
+ <div class="g"><small>Text</small><input type="color" id="tc" value="#000000" title="Text colour" onchange="ex('foreColor',this.value)"><small>Highlight</small><input type="color" id="hc" value="#ffff00" title="Highlight colour" onchange="ex('hiliteColor',this.value)"></div>
+ <div class="g"><button title="Align left" onclick="ex('justifyLeft')">&#8676;</button><button title="Centre" onclick="ex('justifyCenter')">&#8801;</button><button title="Align right" onclick="ex('justifyRight')">&#8677;</button><button title="Justify" onclick="ex('justifyFull')">&#9776;</button></div>
+ <div class="g"><button title="Undo (Ctrl+Z)" onclick="ex('undo')">&#8630;</button><button title="Redo (Ctrl+Y)" onclick="ex('redo')">&#8631;</button><button title="Clear formatting" onclick="ex('removeFormat')">Tx</button></div>
+ <div class="g"><small>Table</small><button title="Insert row above" onclick="rowOp('above')">Row&#8593;+</button><button title="Insert row below" onclick="rowOp('below')">Row&#8595;+</button><button title="Delete row" onclick="rowOp('del')">Row&#10005;</button>
+ <button title="Insert column left" onclick="colOp('left')">&#8592;Col+</button><button title="Insert column right" onclick="colOp('right')">Col+&#8594;</button><button title="Delete column" onclick="colOp('del')">Col&#10005;</button>
+ <button title="Widen column" onclick="colOp('wide')">&#8596;+</button><button title="Narrow column" onclick="colOp('narrow')">&#8596;-</button>
+ <button title="Taller row" onclick="rowH(1)">&#8597;+</button><button title="Shorter row" onclick="rowH(-1)">&#8597;-</button>
+ <button title="Toggle border of selected cell(s)" onclick="cellBorder()">&#9633;</button><small>Fill</small><input type="color" id="cc" value="#fff3b0" title="Cell fill colour" onchange="cellFill(this.value)"><button title="Remove cell fill" onclick="cellFill('')">&#8709;</button></div>
+ <div class="g"><select id="insSel" title="Insert" onchange="ins(this.value);this.selectedIndex=0"><option value="">+ Insert</option><option value="sig">Signature box</option><option value="seal">Stamp / seal circle</option><option value="txt">Text box</option><option value="sigline">Signature line (right)</option><option value="line">Underline blank</option><option value="dots">Dotted blank</option><option value="date">Today&apos;s date</option><option value="rs">&#8377; symbol</option><option value="chk">&#9744; checkbox</option></select>
+ <button title="Insert image / signature / logo" onclick="imgIn.click()">Image</button><input type="file" id="imgIn" accept="image/*" hidden onchange="insImg(this)">
+ <button title="Delete the box / image where the cursor is" onclick="delBox()">Box&#10005;</button></div>
+ <span id="say"></span>
 </div>
 <div id="out"></div>
 <script>
@@ -113,7 +141,7 @@ function V(d,n){
  if(d.tag)h+=`<div class="tg${d.pill?' pill':''}">${d.tag}</div>`;
  if(d.box)h+=`<div class="bx" style="${d.bxs||''}">${d.box}</div>`;
  if(d.p)h+=d.sr?`<div class="strip"><span>${d.p}</span><span>${d.sr}</span></div>`:`<div class="pr">${d.p}</div>`;
- h+='<div class="info">'+d.r.map(r=>`<div class="row">${r.map(l=>`<div>${l?`<span>${l}</span>`:''}<i></i></div>`).join('')}</div>`).join('')+'</div>';
+ h+='<div class="info">'+d.r.map(r=>`<div class="row">${r.map(l=>`<div>${l?`<span>${l}</span>`:''}<span class="fl"></span></div>`).join('')}</div>`).join('')+'</div>';
  if(d.cols){
   h+=`<table class="${d.solid?'sd':''}">`+(d.nohead?'':'<thead><tr>')+d.cols.map(k=>`<th style="width:${k[1]}%">${k[0]}</th>`).join('')+(d.nohead?'':'</tr></thead>')+'<tbody>';
   for(let i=0;i<n;i++)h+='<tr>'+d.cols.map((k,j)=>`<td>${j==0&&d.sl?[...d.sl][i]||'':''}</td>`).join('')+'</tr>';
@@ -125,7 +153,7 @@ function mr(ssm){
  const rows=Array.from({length:10},(_,i)=>`<tr><td>${'১২৩৪৫৬৭৮৯'[i]||'১০'}</td>${'<td></td>'.repeat(8)}</tr>`).join('');
  const sg=ssm?['সংশ্লিষ্ট অবর সহ-বাস্তুকার','জেলা বাস্তুকার দ্বারা পরীক্ষিত<br>(শীলমোহর সহ স্বাক্ষর)','ভি.ইসি/ডলুইসি-র সম্পাদক/প্রধান শিক্ষক<br>(শীলমোহর সহ স্বাক্ষর)','ভি.ইসি/ডলুইসি-র সভাপতি/এম.সি-র সম্পাদক<br>(শীলমোহর সহ স্বাক্ষর)']:['প্রধান শিক্ষক / সম্পাদক<br>(শীলমোহর সহ স্বাক্ষর)','সভাপতি / সম্পাদক<br>(শীলমোহর সহ স্বাক্ষর)'];
  const W=[4,26,9,5,15,8,8,14,11],H=['ক্রমিক সংখ্যা','শ্রমিকের নাম, পিতা/স্বামীর নাম ও ঠিকানা','কাজের তারিখ','মোট দিন','কাজের বিবরণ','মজুরীর হার','মোট পাওনা','প্রাপ্তি অন্তে প্রাপকের স্বাক্ষর/টিপসই','টিপসই শনাক্তকারী'];
- const m=(a,b)=>`<p>${a}<i></i></p>`;
+ const m=(a,b)=>`<p>${a}<span class="fl"></span></p>`;
  return `<div class="mr"><div>${ssm?'<h4>সর্বশিক্ষা অভিযান</h4><h3>সর্বশিক্ষা মিশন, বাঁকুড়া (বাস্তু বিভাগ)</h3>':''}<h4>শ্রমিকের মজুরী প্রদানের মাষ্টার রোল</h4>
  <div class="meta"><div>${m('বিদ্যালয়ের নাম: তালডাংরা ফুলমতি উচ্চ বিদ্যালয় (উ.মা.)')}${m('কাজ আরম্ভের তারিখ:')}${m('মজুরী প্রদানের তারিখ:')}</div><div>${m('চক্রের নাম:')}${m('কাজ সমাপ্তির তারিখ:')}</div></div>
  <table><thead><tr>${H.map((h,i)=>`<th style="width:${W[i]}%">${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>
@@ -133,7 +161,7 @@ function mr(ssm){
  <table style="margin-top:2px"><thead><tr><th>শ্রমিকের ধরন</th><th>সংখ্যা</th><th>মোট প্রদেয় অর্থ</th></tr></thead><tbody>${['দক্ষ','অর্ধ দক্ষ','সাধারণ','মোট'].map(x=>`<tr><td style="text-align:left">${x}</td><td></td><td></td></tr>`).join('')}</tbody></table></div></div>
  <div><div style="font-size:11px;margin-bottom:8px">শ্রমিকগণ আমার সাক্ষাতে স্বাক্ষর করিয়া নিজ নিজ মজুরী বুঝিয়া পাইলেন।</div><div class="sg">${sg.map(x=>`<div>${x}</div>`).join('')}</div></div></div>`;
 }
-function go(){
+function go(){dirty=false;snap();
  const k=doc.value,isMR=k=='mr',lay=lay_(),n=8;
  lay_el.disabled=isMR;ssm.style.display=isMR?'':'none';
  let css=document.getElementById('pg')||document.head.appendChild(Object.assign(document.createElement('style'),{id:'pg'}));
@@ -156,5 +184,87 @@ function fit(){
  });
 }
 const lay_el=document.getElementById('lay');function lay_(){return lay_el.value}
+
+let saved=null,dirty=false,prev={};
+function snap(){prev={doc:doc.value,lay:lay_el.value,ssm:ssm.value}}
+function chg(){if(dirty&&!confirm('আপনার এডিট মুছে যাবে। চালিয়ে যাবেন?\nYour edits will be lost. Continue?')){doc.value=prev.doc;lay_el.value=prev.lay;ssm.value=prev.ssm;return}go()}
+function say(m){const e=document.getElementById('say');e.textContent=m;clearTimeout(say.t);say.t=setTimeout(()=>e.textContent='',3500)}
+out.addEventListener('input',()=>dirty=true);
+document.getElementById('fmt').addEventListener('mousedown',e=>{if(!/^(SELECT|INPUT|OPTION)$/.test(e.target.tagName))e.preventDefault()});
+document.addEventListener('selectionchange',()=>{const s=getSelection();if(s.rangeCount&&out.contains(s.anchorNode)){saved=s.getRangeAt(0).cloneRange();syncUI()}});
+const elOf=n=>n&&(n.nodeType==3?n.parentElement:n);
+function restore(){out.focus({preventScroll:true});if(saved){const s=getSelection();s.removeAllRanges();s.addRange(saved)}}
+function ex(c,v){restore();document.execCommand('styleWithCSS',false,true);document.execCommand(c,false,v==null?null:v);dirty=true}
+function curPt(){const e=elOf(saved&&saved.startContainer);return e?parseFloat(getComputedStyle(e).fontSize)*.75:10}
+function syncUI(){const pt=Math.round(curPt());const f=document.getElementById('fs');f.value=String(pt);if(f.value!=String(pt))f.value=''}
+function bump(d){setSize(Math.max(4,Math.round((curPt()+d)*2)/2))}
+function setSize(pt){
+ if(!pt)return;restore();const s=getSelection();if(!s.rangeCount)return say('আগে কোনো লেখায় ক্লিক করুন');
+ if(s.isCollapsed){let e=elOf(s.anchorNode);if(e===out||!e)return;e.style.fontSize=pt+'pt';dirty=true;syncUI();return}
+ document.execCommand('styleWithCSS',false,false);document.execCommand('fontSize',false,'7');
+ const made=[];out.querySelectorAll('font[size="7"]').forEach(f=>{const sp=document.createElement('span');sp.style.fontSize=pt+'pt';while(f.firstChild)sp.appendChild(f.firstChild);f.replaceWith(sp);made.push(sp)});
+ document.execCommand('styleWithCSS',false,true);
+ if(made.length){const r=document.createRange();r.setStartBefore(made[0]);r.setEndAfter(made[made.length-1]);s.removeAllRanges();s.addRange(r);saved=r.cloneRange()}
+ dirty=true;syncUI();
+}
+function cell(){const e=elOf(saved&&saved.startContainer);return e&&out.contains(e)?e.closest('td,th'):null}
+function cellsSel(){
+ if(!saved)return[];const e=elOf(saved.commonAncestorContainer),t=e&&e.closest('table');
+ if(t&&out.contains(t)){const a=[...t.querySelectorAll('td,th')].filter(c=>saved.intersectsNode(c));if(a.length)return a}
+ const c=cell();return c?[c]:[]}
+function fitRows(c){
+ const v=c.closest('.v,.mr');if(!v)return;
+ if(v.classList.contains('v')){let rh=parseFloat(getComputedStyle(v).getPropertyValue('--rh'));while(v.scrollHeight>v.clientHeight+1&&rh>4.5){rh-=.25;v.style.setProperty('--rh',rh+'mm')}}
+ if(v.scrollHeight>v.clientHeight+1)say('⚠ জায়গা কম — নিচের অংশ পেজের বাইরে কেটে যেতে পারে')}
+function rowOp(k){
+ const c=cell();if(!c)return say('টেবিলের কোনো ঘরে ক্লিক করুন');
+ const tr=c.parentElement,tb=tr.parentElement;
+ if(k=='del'){const t=c.closest('table');if(t.rows.length<=1)return say('শেষ সারিটি মোছা যাবে না');const nx=tr.nextElementSibling||tr.previousElementSibling;tr.remove();dirty=true;return}
+ const nt=tr.cloneNode(true);
+ nt.querySelectorAll('td,th').forEach(x=>{x.innerHTML='';x.removeAttribute('colspan')});
+ if(tb.tagName=='THEAD'&&k=='below'){const body=c.closest('table').tBodies[0]||c.closest('table').appendChild(document.createElement('tbody'));[...nt.cells].forEach(x=>{const d=document.createElement('td');d.style.cssText='';nt.replaceChild(d,x)});body.insertBefore(nt,body.firstChild)}
+ else tr.parentElement.insertBefore(nt,k=='above'?tr:tr.nextSibling);
+ dirty=true;fitRows(c);}
+function colOp(k){
+ const c=cell();if(!c)return say('টেবিলের কোনো ঘরে ক্লিক করুন');
+ const t=c.closest('table'),idx=c.cellIndex,fr=t.rows[0],tw=t.offsetWidth;
+ [...fr.cells].forEach(x=>x.style.width=(x.offsetWidth/tw*100).toFixed(2)+'%');
+ const W=x=>parseFloat(x.style.width);
+ if(k=='left'||k=='right'){
+  const at=k=='left'?idx:idx+1,nw=12;
+  [...fr.cells].forEach(x=>x.style.width=(W(x)*(100-nw)/100).toFixed(2)+'%');
+  [...t.rows].forEach(r=>{const ref=r.cells[Math.min(idx,r.cells.length-1)];const n=document.createElement(ref?ref.tagName.toLowerCase():'td');if(ref&&ref.className)n.className=ref.className;if(r===fr)n.style.width=nw+'%';
+   const before=r.cells[at]||null;r.insertBefore(n,before)});
+ }else if(k=='del'){
+  if(fr.cells.length<=1)return say('শেষ কলামটি মোছা যাবে না');
+  const w=W(fr.cells[idx]);[...t.rows].forEach(r=>r.cells[idx]&&r.cells[idx].remove());
+  [...fr.cells].forEach(x=>x.style.width=(W(x)*100/(100-w)).toFixed(2)+'%');
+ }else{
+  const d=k=='wide'?2:-2,a=fr.cells[idx],b=fr.cells[idx+1]||fr.cells[idx-1];if(!b)return;
+  if(W(a)+d<5||W(b)-d<5)return say('এর বেশি সম্ভব নয়');
+  a.style.width=(W(a)+d)+'%';b.style.width=(W(b)-d)+'%';
+ }
+ dirty=true}
+function rowH(d){
+ const c=cell();if(!c)return say('টেবিলের কোনো ঘরে ক্লিক করুন');
+ const tr=c.parentElement,mm=tr.cells[0].offsetHeight*25.4/96,h=Math.max(4,mm+d);
+ [...tr.cells].forEach(x=>x.style.height=h+'mm');dirty=true;fitRows(c)}
+function cellBorder(){const a=cellsSel();if(!a.length)return say('টেবিলের কোনো ঘরে ক্লিক করুন');const hide=a[0].style.border!=='hidden';a.forEach(x=>x.style.border=hide?'hidden':'');dirty=true}
+function cellFill(v){const a=cellsSel();if(!a.length)return say('টেবিলের কোনো ঘরে ক্লিক করুন');a.forEach(x=>x.style.background=v);dirty=true}
+function ins(k){
+ if(!k)return;const d=new Date(),dt=String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+ const H={
+  sig:'<span class="bxi" style="width:48mm;height:16mm">Signature</span>&nbsp;',
+  seal:'<span class="bxi" style="width:24mm;height:24mm;border-radius:50%;justify-content:center;align-items:center">Seal</span>&nbsp;',
+  txt:'<span class="bxi" style="width:45mm;height:10mm;justify-content:flex-start;align-items:center;color:#000;font-size:9pt">Text</span>&nbsp;',
+  sigline:'<div style="text-align:right;margin-top:8mm"><span style="display:inline-block;border-top:.25mm solid #000;padding:0 8mm">Signature</span></div>',
+  line:'<span style="display:inline-block;width:40mm;border-bottom:.3mm solid #000;height:4mm;vertical-align:bottom">&nbsp;</span>&nbsp;',
+  dots:'..............................&nbsp;',date:dt,rs:'₹',chk:'☐ '}[k];
+ restore();document.execCommand('insertHTML',false,H);dirty=true}
+function insImg(inp){
+ const f=inp.files[0];if(!f)return;const r=new FileReader();
+ r.onload=()=>{restore();document.execCommand('insertHTML',false,'<span class="bxi" style="width:40mm;height:16mm;border:0"><img src="'+r.result+'"></span>&nbsp;');dirty=true;inp.value=''};
+ r.readAsDataURL(f)}
+function delBox(){const e=elOf(saved&&saved.startContainer),b=e&&e.closest('.bxi');if(!b)return say('বক্সের ভিতরে ক্লিক করে আবার চেষ্টা করুন');b.remove();dirty=true}
 go();
 </script></body></html>
