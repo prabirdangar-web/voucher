@@ -12,43 +12,41 @@ body{margin:0;background:#666;font-family:"Times New Roman","Hind Siliguri",seri
 .sheet.l{width:297mm;height:210mm;padding:5mm;gap:4mm}
 .sheet.l2{grid-template-columns:repeat(2,1fr)}
 .sheet.l3{grid-template-columns:repeat(3,1fr)}
-.l2 .v{font-size:10pt}
-.l2 table{font-size:9.5pt}
 .cut{text-align:center;font:bold 8pt Arial;border-top:.3mm dashed #555;margin:2mm 0;padding-top:.8mm;letter-spacing:1px}
-.v{background:var(--bg);border:.35mm solid var(--c);padding:3mm;display:flex;flex-direction:column;overflow:hidden;font-size:9pt;--rh:9.5mm}
-.mob{text-align:right;font-weight:bold;font-size:10pt}
-.ti{text-align:center;font:900 14pt/1.1 Arial,"Hind Siliguri",sans-serif;margin-top:1mm}
-.su{text-align:center;font-weight:bold;font-size:10pt;margin-top:1mm}
-.tg{text-align:center;font-size:8.5pt;font-style:italic;margin:1mm 0}
-.tg.pill{border:.4mm solid #000;border-radius:5mm;padding:1mm;font-style:normal;font-weight:bold;font-size:10pt;margin:2mm 3mm}
-.pr{text-align:center;font-weight:bold;font-size:9.5pt;margin-bottom:1mm}
-.info{border-top:.3mm solid var(--c);padding-top:1mm;margin-top:1mm}
-.row{display:flex;gap:3mm;align-items:flex-end;min-height:7mm}
+.v{background:var(--bg);border:.35mm solid var(--c);padding:calc(3mm*var(--k));display:flex;flex-direction:column;overflow:hidden;font-size:calc(9pt*var(--k));--k:1;--r:1;--rh:calc(9.5mm*var(--r))}
+.mob{text-align:right;font-weight:bold;font-size:calc(10pt*var(--k))}
+.ti{text-align:center;font:900 calc(14pt*var(--k))/1.1 Arial,"Hind Siliguri",sans-serif;margin-top:calc(1mm*var(--k))}
+.su{text-align:center;font-weight:bold;font-size:calc(10pt*var(--k));margin-top:calc(1mm*var(--k))}
+.tg{text-align:center;font-size:calc(8.5pt*var(--k));font-style:italic;margin:calc(1mm*var(--k)) 0}
+.tg.pill{border:.4mm solid #000;border-radius:calc(5mm*var(--k));padding:calc(1mm*var(--k));font-style:normal;font-weight:bold;font-size:calc(10pt*var(--k));margin:calc(2mm*var(--k)) calc(3mm*var(--k))}
+.pr{text-align:center;font-weight:bold;font-size:calc(9.5pt*var(--k));margin-bottom:calc(1mm*var(--k))}
+.info{border-top:.3mm solid var(--c);padding-top:calc(1mm*var(--k));margin-top:calc(1mm*var(--k))}
+.row{display:flex;gap:calc(3mm*var(--k));align-items:flex-end;min-height:calc(7mm*var(--k))}
 .row div{display:flex;flex:1;align-items:flex-end}
 .row span{white-space:nowrap}
-.row .fl{flex:1;border-bottom:.25mm dashed #777;height:5mm;margin-left:1mm}
-table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:2mm;font-size:8.7pt}
-th,td{border:.25mm dashed #777;padding:.8mm;text-align:center}
-th{height:9mm;font-style:italic;line-height:1.05}
+.row .fl{flex:1;border-bottom:.25mm dashed #777;height:calc(5mm*var(--k));margin-left:calc(1mm*var(--k))}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:calc(2mm*var(--k));font-size:calc(8.7pt*var(--k))}
+th,td{border:.25mm dashed #777;padding:calc(.8mm*var(--k));text-align:center}
+th{height:calc(9mm*var(--k));font-style:italic;line-height:1.05}
 th{background:var(--th);color:var(--thc)}
 .sd th,.sd td{border-style:solid;border-color:#333}
-.strip{display:flex;justify-content:space-between;background:var(--st);font:bold 8pt Arial;padding:1mm 1.5mm;margin-top:1.5mm}
-.bx{text-align:center;background:#e4e4e4;border:.3mm solid #444;font:bold 12pt Arial;letter-spacing:2px;padding:1mm;margin:1.5mm 0}
+.strip{display:flex;justify-content:space-between;background:var(--st);font:bold calc(8pt*var(--k)) Arial;padding:calc(1mm*var(--k)) calc(1.5mm*var(--k));margin-top:calc(1.5mm*var(--k))}
+.bx{text-align:center;background:#e4e4e4;border:.3mm solid #444;font:bold calc(12pt*var(--k)) Arial;letter-spacing:calc(2px*var(--k));padding:calc(1mm*var(--k));margin:calc(1.5mm*var(--k)) 0}
 .tot{background:var(--st)}
 td{height:var(--rh)}
 .ln{height:var(--rh);border-bottom:.25mm dashed #777}
-.tot{display:grid;grid-template-columns:1fr 22%;border-top:.25mm solid #000;border-bottom:.25mm dashed #777;min-height:8mm;align-items:center;font-weight:bold;font-style:italic;font-size:10pt;margin-top:1mm}
-.tot b{text-align:right;padding-right:2mm}.tot u{border-left:.25mm dashed #777;height:8mm}
-.ft{margin-top:2mm;padding-top:1.3mm;border-top:.25mm solid #000;font-size:8pt;line-height:1.9}
-.ft .r{text-align:right;font-weight:bold;padding-right:2mm;margin-top:9mm}
-.paid{display:inline-block;border:.5mm solid green;color:green;font:bold 10pt Arial;padding:.5mm 2mm;transform:rotate(-8deg);border-radius:1mm}
+.tot{display:grid;grid-template-columns:1fr 22%;border-top:.25mm solid #000;border-bottom:.25mm dashed #777;min-height:calc(8mm*var(--k));align-items:center;font-weight:bold;font-style:italic;font-size:calc(10pt*var(--k));margin-top:calc(1mm*var(--k))}
+.tot b{text-align:right;padding-right:calc(2mm*var(--k))}.tot u{border-left:.25mm dashed #777;height:calc(8mm*var(--k))}
+.ft{margin-top:calc(2mm*var(--k));padding-top:calc(1.3mm*var(--k));border-top:.25mm solid #000;font-size:calc(8pt*var(--k));line-height:1.9}
+.ft .r{text-align:right;font-weight:bold;padding-right:calc(2mm*var(--k));margin-top:calc(9mm*var(--k))}
+.paid{display:inline-block;border:.5mm solid green;color:green;font:bold calc(10pt*var(--k)) Arial;padding:.5mm calc(2mm*var(--k));transform:rotate(-8deg);border-radius:calc(1mm*var(--k))}
 /* master roll */
 .mr{width:297mm;height:210mm;padding:10mm 15mm;margin:10px auto;background:#fff;font-family:'Hind Siliguri',Arial,sans-serif;display:flex;flex-direction:column;justify-content:space-between}
-.mr h3,.mr h4{margin:1px 0;text-align:center}.mr h3{font-size:16px}.mr h4{font-size:13px}
-.mr .meta{display:flex;justify-content:space-between;font-size:12px;margin:6px 0}
-.mr .meta div{width:48%}.mr .meta p{margin:3px 0;display:flex}.mr .meta .fl{flex:1;border-bottom:1px dotted #000;margin-left:5px}
-.mr table{font-size:11px;margin:0 0 6px}.mr th,.mr td{border:1px solid #000;font-style:normal;padding:2px 4px}.mr th{background:#f0f0f0;height:auto}.mr td{height:6.2mm}
-.mr .sg{display:flex;justify-content:space-around;font-size:10px;text-align:center;margin-top:5px}
+.mr h3,.mr h4{margin:1px 0;text-align:center}.mr h3{font-size:calc(16px*var(--k))}.mr h4{font-size:calc(13px*var(--k))}
+.mr .meta{display:flex;justify-content:space-between;font-size:calc(12px*var(--k));margin:calc(6px*var(--k)) 0}
+.mr .meta div{width:48%}.mr .meta p{margin:calc(3px*var(--k)) 0;display:flex}.mr .meta .fl{flex:1;border-bottom:1px dotted #000;margin-left:calc(5px*var(--k))}
+.mr table{font-size:calc(11px*var(--k));margin:0 0 calc(6px*var(--k))}.mr th,.mr td{border:1px solid #000;font-style:normal;padding:calc(2px*var(--k)) calc(4px*var(--k))}.mr th{background:#f0f0f0;height:auto}.mr td{height:calc(6.2mm*var(--r))}
+.mr .sg{display:flex;justify-content:space-around;font-size:calc(10px*var(--k));text-align:center;margin-top:calc(5px*var(--k))}
 
 .fmt{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #bbb;padding:5px 8px;display:flex;flex-wrap:wrap;gap:4px 2px;align-items:center;font:13px Arial,"Hind Siliguri",sans-serif;box-shadow:0 2px 5px rgba(0,0,0,.3)}
 .fmt button,.fmt select{height:28px;padding:0 8px;font:inherit;border:1px solid #bbb;background:#fafafa;border-radius:3px;cursor:pointer;margin:0}
@@ -59,11 +57,13 @@ td{height:var(--rh)}
 #say{color:#b00;font-size:12px;margin-left:6px}
 .bxi{display:inline-flex;align-items:flex-end;justify-content:center;resize:both;overflow:hidden;border:.3mm solid #000;font-size:7pt;color:#555;vertical-align:bottom;min-width:8mm;min-height:6mm;padding:.5mm}
 .bxi img{width:100%;height:100%;object-fit:contain}
+.mr{--k:1;--r:1}
+th,td{overflow-wrap:normal;word-break:normal}
 #out{outline:none}
 #out [contenteditable],#out *{caret-color:#c00}
 #out .v *:hover,#out .mr *:hover{outline:.2mm dashed rgba(30,100,220,.45);outline-offset:.2mm}
 #out *:focus{outline:.3mm solid #1e64dc;background:rgba(255,240,150,.35)}
-.row .fl{font-style:normal;min-width:10mm;font-size:inherit;line-height:5mm;overflow:hidden;white-space:nowrap}
+.row .fl{font-style:normal;min-width:calc(10mm*var(--k));font-size:inherit;line-height:calc(5mm*var(--k));overflow:hidden;white-space:nowrap}
 .hint{font-size:12px;color:#555;margin-top:4px}
 @media print{#out *:hover,#out *:focus{outline:none!important;background:none!important}.hint{display:none}
 body{background:none}.bar,.fmt{display:none}.sheet,.mr{margin:0}}
@@ -79,8 +79,9 @@ body{background:none}.bar,.fmt{display:none}.sheet,.mr{margin:0}}
     <option value="0">সর্বশিক্ষা মিশন ছাড়া (Without SSM)</option>
   </select>
   <button onclick="chg()" title="Discard edits and reload blank form">RESET</button>
+  <button onclick="saveHTML()" title="Save the edited form as an HTML file (Ctrl+S)">SAVE HTML</button>
   <button onclick="window.print()">PRINT</button>
-  <div class="hint">✎ যেকোনো লেখায় ক্লিক করে এডিট করুন (Click any text to edit). উপরের Word-এর মতো টুলবার দিয়ে ফন্ট সাইজ, রং, Bold/Italic, সারি/কলাম, সই-বক্স ইত্যাদি দিন। Dropdown/layout বদলালে বা RESET করলে এডিট মুছে যাবে — আগে PRINT করুন।</div>
+  <div class="hint">✎ যেকোনো লেখায় ক্লিক করে এডিট করুন (Click any text to edit). উপরের Word-এর মতো টুলবার দিয়ে ফন্ট সাইজ, রং, Bold/Italic, সারি/কলাম, সই-বক্স ইত্যাদি দিন। Dropdown/layout বদলালে বা RESET করলে এডিট মুছে যাবে — আগে SAVE HTML / PRINT করুন। SAVE HTML দিলে এডিট করা ফর্ম ফাইলে সেভ হবে, পরে সেই ফাইল খুললেই এডিটসহ ফিরে আসবে।</div>
 </div>
 <div class="fmt" id="fmt">
  <div class="g"><select id="ff" title="Font" onchange="ex('fontName',this.value)"><option value="">Font</option><option value="Times New Roman">Times New Roman</option><option value="Arial">Arial</option><option value="Hind Siliguri">Hind Siliguri</option><option value="Nirmala UI">Nirmala UI</option><option value="Noto Sans Bengali">Noto Sans Bengali</option><option value="Georgia">Georgia</option><option value="Verdana">Verdana</option><option value="Courier New">Courier New</option><option value="Impact">Impact</option></select>
@@ -147,42 +148,34 @@ function V(d,n){
   for(let i=0;i<n;i++)h+='<tr>'+d.cols.map((k,j)=>`<td>${j==0&&d.sl?[...d.sl][i]||'':''}</td>`).join('')+'</tr>';
   h+=`</tbody></table>${d.notot?'':`<div class="tot"><b>${d.tot||'Total:'}</b><u></u></div>`}`;
  }else for(let i=0;i<n+2;i++)h+='<div class="ln"></div>';
- return h+(d.foot?`<div class="ft">${d.foot}</div>`:'<div style="flex:1"></div>')+'</div>';
+ return sc(h+(d.foot?`<div class="ft">${d.foot}</div>`:'<div style="flex:1"></div>')+'</div>');
 }
 function mr(ssm){
  const rows=Array.from({length:10},(_,i)=>`<tr><td>${'১২৩৪৫৬৭৮৯'[i]||'১০'}</td>${'<td></td>'.repeat(8)}</tr>`).join('');
  const sg=ssm?['সংশ্লিষ্ট অবর সহ-বাস্তুকার','জেলা বাস্তুকার দ্বারা পরীক্ষিত<br>(শীলমোহর সহ স্বাক্ষর)','ভি.ইসি/ডলুইসি-র সম্পাদক/প্রধান শিক্ষক<br>(শীলমোহর সহ স্বাক্ষর)','ভি.ইসি/ডলুইসি-র সভাপতি/এম.সি-র সম্পাদক<br>(শীলমোহর সহ স্বাক্ষর)']:['প্রধান শিক্ষক / সম্পাদক<br>(শীলমোহর সহ স্বাক্ষর)','সভাপতি / সম্পাদক<br>(শীলমোহর সহ স্বাক্ষর)'];
  const W=[4,26,9,5,15,8,8,14,11],H=['ক্রমিক সংখ্যা','শ্রমিকের নাম, পিতা/স্বামীর নাম ও ঠিকানা','কাজের তারিখ','মোট দিন','কাজের বিবরণ','মজুরীর হার','মোট পাওনা','প্রাপ্তি অন্তে প্রাপকের স্বাক্ষর/টিপসই','টিপসই শনাক্তকারী'];
  const m=(a,b)=>`<p>${a}<span class="fl"></span></p>`;
- return `<div class="mr"><div>${ssm?'<h4>সর্বশিক্ষা অভিযান</h4><h3>সর্বশিক্ষা মিশন, বাঁকুড়া (বাস্তু বিভাগ)</h3>':''}<h4>শ্রমিকের মজুরী প্রদানের মাষ্টার রোল</h4>
+ return sc(`<div class="mr"><div>${ssm?'<h4>সর্বশিক্ষা অভিযান</h4><h3>সর্বশিক্ষা মিশন, বাঁকুড়া (বাস্তু বিভাগ)</h3>':''}<h4>শ্রমিকের মজুরী প্রদানের মাষ্টার রোল</h4>
  <div class="meta"><div>${m('বিদ্যালয়ের নাম: তালডাংরা ফুলমতি উচ্চ বিদ্যালয় (উ.মা.)')}${m('কাজ আরম্ভের তারিখ:')}${m('মজুরী প্রদানের তারিখ:')}</div><div>${m('চক্রের নাম:')}${m('কাজ সমাপ্তির তারিখ:')}</div></div>
  <table><thead><tr>${H.map((h,i)=>`<th style="width:${W[i]}%">${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>
  <div style="width:55%;font-size:11px"><div style="font-weight:500;margin-bottom:4px">• মাষ্টার রোলে বর্ণিত শ্রমিকদের কাজের পরিমাণ সঠিক আছে।</div><b>এক নজরে</b>
  <table style="margin-top:2px"><thead><tr><th>শ্রমিকের ধরন</th><th>সংখ্যা</th><th>মোট প্রদেয় অর্থ</th></tr></thead><tbody>${['দক্ষ','অর্ধ দক্ষ','সাধারণ','মোট'].map(x=>`<tr><td style="text-align:left">${x}</td><td></td><td></td></tr>`).join('')}</tbody></table></div></div>
- <div><div style="font-size:11px;margin-bottom:8px">শ্রমিকগণ আমার সাক্ষাতে স্বাক্ষর করিয়া নিজ নিজ মজুরী বুঝিয়া পাইলেন।</div><div class="sg">${sg.map(x=>`<div>${x}</div>`).join('')}</div></div></div>`;
+ <div><div style="font-size:11px;margin-bottom:8px">শ্রমিকগণ আমার সাক্ষাতে স্বাক্ষর করিয়া নিজ নিজ মজুরী বুঝিয়া পাইলেন।</div><div class="sg">${sg.map(x=>`<div>${x}</div>`).join('')}</div></div></div>`);
 }
 function go(){dirty=false;snap();
  const k=doc.value,isMR=k=='mr',lay=lay_(),n=8;
  lay_el.disabled=isMR;ssm.style.display=isMR?'':'none';
  let css=document.getElementById('pg')||document.head.appendChild(Object.assign(document.createElement('style'),{id:'pg'}));
  css.textContent='@page{size:A4 landscape;margin:0}';
- if(isMR){out.innerHTML=mr(ssm.value=='1');edit();return}
+ if(isMR){out.innerHTML=mr(ssm.value=='1');fitSoon();edit();return}
  const list=MIX[k]||[k],cnt=+lay;
  let h=`<div class="sheet l l${lay}">`;
  for(let i=0;i<cnt;i++)h+=V(D[list[i%list.length]],n);
  out.innerHTML=h+'</div>';
- fit();
+ fitSoon();
  edit();
 }
 function edit(){out.contentEditable='true';out.spellcheck=false}
-function fit(){
- document.querySelectorAll('.v').forEach(v=>{
-  let rh=parseFloat(getComputedStyle(v).getPropertyValue('--rh'));
-  while(v.scrollHeight>v.clientHeight+1&&rh>6.5){rh-=.25;v.style.setProperty('--rh',rh+'mm')}
-  const rows=()=>v.querySelectorAll('tbody tr,.ln');
-  while(v.scrollHeight>v.clientHeight+1&&rows().length>2){const r=rows();r[r.length-1].remove()}
- });
-}
 const lay_el=document.getElementById('lay');function lay_(){return lay_el.value}
 
 let saved=null,dirty=false,prev={};
@@ -214,8 +207,9 @@ function cellsSel(){
  const c=cell();return c?[c]:[]}
 function fitRows(c){
  const v=c.closest('.v,.mr');if(!v)return;
- if(v.classList.contains('v')){let rh=parseFloat(getComputedStyle(v).getPropertyValue('--rh'));while(v.scrollHeight>v.clientHeight+1&&rh>4.5){rh-=.25;v.style.setProperty('--rh',rh+'mm')}}
- if(v.scrollHeight>v.clientHeight+1)say('⚠ জায়গা কম — নিচের অংশ পেজের বাইরে কেটে যেতে পারে')}
+ let r=parseFloat(v.style.getPropertyValue('--r'))||1;
+ while(!ok(v)&&r>.4){r-=.05;v.style.setProperty('--r',r.toFixed(3))}
+ if(!ok(v))say('⚠ জায়গা কম — নিচের অংশ পেজের বাইরে কেটে যেতে পারে')}
 function rowOp(k){
  const c=cell();if(!c)return say('টেবিলের কোনো ঘরে ক্লিক করুন');
  const tr=c.parentElement,tb=tr.parentElement;
@@ -266,5 +260,38 @@ function insImg(inp){
  r.onload=()=>{restore();document.execCommand('insertHTML',false,'<span class="bxi" style="width:40mm;height:16mm;border:0"><img src="'+r.result+'"></span>&nbsp;');dirty=true;inp.value=''};
  r.readAsDataURL(f)}
 function delBox(){const e=elOf(saved&&saved.startContainer),b=e&&e.closest('.bxi');if(!b)return say('বক্সের ভিতরে ক্লিক করে আবার চেষ্টা করুন');b.remove();dirty=true}
-go();
+
+function sc(html){return html.replace(/style="([^"]*)"/g,(m,t)=>'style="'+t.replace(/(\d*\.?\d+)(pt|mm|px)(?![\w-])/g,(x,n,u)=>((u=='mm'&&+n<=.5)||(u=='px'&&+n<=1))?x:`calc(${n}${u}*var(--k))`)+'"')}
+function ok(v){
+ if(v.scrollHeight>v.clientHeight+1||v.scrollWidth>v.clientWidth+1)return false;
+ if([...v.querySelectorAll('th,td')].some(c=>c.scrollWidth>c.clientWidth+1))return false;
+ if(v.classList.contains('mr')){const cs=getComputedStyle(v),last=v.lastElementChild.getBoundingClientRect().bottom;if(last>v.getBoundingClientRect().bottom-parseFloat(cs.paddingBottom)+1)return false}
+ return true}
+function fitOne(v,rMax){
+ v.style.setProperty('--r',.75);
+ let lo=.7,hi=2.2;v.style.setProperty('--k',lo);
+ if(v.classList.contains('v'))while(!ok(v)){const r=v.querySelectorAll('tbody tr,.ln');if(r.length<=2)break;r[r.length-1].remove()}
+ for(let i=0;i<14;i++){const m=(lo+hi)/2;v.style.setProperty('--k',m);ok(v)?lo=m:hi=m}
+ v.style.setProperty('--k',(lo*.985).toFixed(3));
+ let a=.75,b=rMax;for(let i=0;i<12;i++){const m=(a+b)/2;v.style.setProperty('--r',m);ok(v)?a=m:b=m}
+ v.style.setProperty('--r',(a*.985).toFixed(3))}
+function fit(){document.querySelectorAll('.v').forEach(v=>fitOne(v,2.2));document.querySelectorAll('.mr').forEach(v=>fitOne(v,1.6))}
+function fitSoon(){fit();document.fonts&&document.fonts.ready.then(()=>{if(!dirty)fit()})}
+function saveHTML(){
+ const c=document.documentElement.cloneNode(true),o=c.querySelector('#out');
+ o.innerHTML='';o.removeAttribute('contenteditable');o.removeAttribute('spellcheck');
+ c.querySelectorAll('template#saved').forEach(x=>x.remove());
+ const t=document.createElement('template');t.id='saved';t.setAttribute('data-doc',doc.value);t.setAttribute('data-lay',lay_el.value);t.setAttribute('data-ssm',ssm.value);t.innerHTML=out.innerHTML;
+ o.before(t);
+ const d=new Date(),z=n=>String(n).padStart(2,'0'),name='Voucher_'+doc.value+'_'+d.getFullYear()+z(d.getMonth()+1)+z(d.getDate())+'_'+z(d.getHours())+z(d.getMinutes())+'.html';
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['<!DOCTYPE html>\n'+c.outerHTML],{type:'text/html'}));a.download=name;document.body.appendChild(a);a.click();a.remove();
+ dirty=false;say('✔ সেভ হয়েছে: '+name)}
+function restoreSaved(){
+ const t=document.getElementById('saved');if(!t)return false;
+ doc.value=t.dataset.doc;lay_el.value=t.dataset.lay;ssm.value=t.dataset.ssm;
+ const mr=doc.value=='mr';lay_el.disabled=mr;ssm.style.display=mr?'':'none';
+ let css=document.getElementById('pg')||document.head.appendChild(Object.assign(document.createElement('style'),{id:'pg'}));css.textContent='@page{size:A4 landscape;margin:0}';
+ out.innerHTML=t.innerHTML;edit();dirty=false;snap();return true}
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='s'){e.preventDefault();saveHTML()}});
+if(!restoreSaved())go();
 </script></body></html>
